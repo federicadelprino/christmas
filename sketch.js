@@ -1,3 +1,4 @@
+var value = 5;
 var mic;
 var fft;
 var forest = [];
@@ -6,9 +7,12 @@ var lastTime= 0
 var snow = [];
 
 var gifts;
+var volu;
+var tree;
 
 function preload() {
   gifts = loadImage('assets/gifts.png');
+  tree = loadImage('assets/tree.png');
 }
 
 
@@ -31,10 +35,36 @@ function setup() {
 }
 
 function draw() {
-    background(20)
+    background(value,value*2,value*5); 
+    fill(255-value);
+    
+
+      
+     // if (x == 200 || y==200) { //!==: only if it is different
+     
+     if(volu < 0.04) { //lo cambiamo a seconda della percentuale di probabilità per scegliere la quantità
+        background(39, 48, 135);
+        textSize(25);
+        textFont('Mountains of Christmas');
+  text('SING to gain more gifts...', width/2+100, 10, 150, 200);
+  
+      }else{
+        background(143, 201, 252);
+        textSize(25);
+        fill('red');
+        textFont('Mountains of Christmas');
+  text('Happy Christmas!', width/2+100, 0, 100, 200);
+      }
+        
     
     
-    triangle(width/2, height/2, width/2, height/2, width/2, height/2);
+    push();
+    translate(width/2-30,height/2-100);
+    imageMode(CENTER)
+    image(tree, 30, 30);
+    pop();
+    
+    //triangle(width/2, height/2, width/2, height/2, width/2, height/2);
     
     var updateEvery= random(200);
     var currentTime = millis();
@@ -55,10 +85,10 @@ function draw() {
   
    
    volu = mic.getLevel();
-    text(volu, 20, 20)
+    //text(volu, 20, 20)
     
    myY = (height/2)-(map(volu, 0, 1, 0, windowHeight))
-   text(myY,20,50)
+   //text(myY,20,50)
     
     
      var fat = 25;
@@ -120,7 +150,7 @@ function gift() {
 
   this.display = function() {
       
-    image(gifts, this.x-1000, this.y, this.size*2, this.size*2);
+    image(gifts, this.x-900, this.y, this.size*2, this.size*2);
     
   };
 
@@ -128,4 +158,8 @@ function gift() {
 
 function update(){
     forest.push(new gift());
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }
