@@ -42,7 +42,7 @@ function draw() {
       
      // if (x == 200 || y==200) { //!==: only if it is different
      
-     if(volu < 0.04) { //lo cambiamo a seconda della percentuale di probabilità per scegliere la quantità
+     if(volu < 0.04) { 
         background(39, 48, 135);
         textSize(25);
         textFont('Mountains of Christmas');
@@ -50,10 +50,10 @@ function draw() {
   
       }else{
         background(143, 201, 252);
-        textSize(25);
+        textSize(30);
         fill('red');
         textFont('Mountains of Christmas');
-  text('Happy Christmas!', width/2+100, 0, 100, 200);
+  text('Happy Christmas!', width/2+100, 0, 150, 200);
       }
         
     
@@ -85,13 +85,14 @@ function draw() {
   
    
    volu = mic.getLevel();
-    //text(volu, 20, 20)
+  //text(volu, 20, 20)
     
    myY = (height/2)-(map(volu, 0, 1, 0, windowHeight))
    //text(myY,20,50)
     
     
      var fat = 25;
+     
     push();
     fill(255,0,0);
     ellipse(width/4, myY , fat, fat);
@@ -145,11 +146,11 @@ function gift() {
   this.speed = volu;
 
   this.move = function() {
-    this.x = this.x-this.speed
+    this.x = this.x + this.speed
   };
 
   this.display = function() {
-      
+    
     image(gifts, this.x-900, this.y, this.size*2, this.size*2);
     
   };
@@ -162,4 +163,13 @@ function update(){
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
+  
+this.display = function gift() {
+image(this.x-900, this.y, this.size*2, this.size*2);
+    
+  }
+  
 }
+
+
+  
