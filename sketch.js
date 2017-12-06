@@ -100,7 +100,8 @@ function draw() {
     ellipse(width/4*3,myY , fat, fat);
     ellipse(width/5*2, myY/2 , fat, fat);
     ellipse(width/5*3,myY/2 , fat, fat);
-
+    
+    
     pop();
     
             for (var i=0; i<snow.length; i++) {
@@ -131,11 +132,11 @@ function Snow() {
       if(this.x<0){
           this.x = width + 20
       }
-  };
+  }
 
   this.display = function() {
     ellipse(this.x, this.y, this.diameter, this.diameter);
-  };
+  }
 }
 
 
@@ -147,28 +148,27 @@ function gift() {
 
   this.move = function() {
     this.x = this.x + this.speed
-  };
+  }
 
   this.display = function() {
     
     image(gifts, this.x-900, this.y, this.size*2, this.size*2);
     
-  };
+  }
 
 }
 
 function update(){
-    forest.push(new gift());
+  
+      forest.push(new gift());
+  
 }
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
   
-this.display = function gift() {
-image(this.x-900, this.y, this.size*2, this.size*2);
-    
-  }
-  
+ forest.push(new gift()); 
+
 }
 
 
